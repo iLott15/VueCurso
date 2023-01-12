@@ -4,3 +4,4 @@ Aprenda na prática a trabalhar com o Framework Javascript Vue JS. Você vai apr
 O que você aprenderá
 Trabalhar com Vue JS em seus projetos
 Criar componentes com Vue JS
+https://www.udemy.com/course/introducao-ao-vue-js-2/
