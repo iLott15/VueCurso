@@ -9,15 +9,37 @@
 
     <div id="app">
 
-      <gui-titulo v-bind:titulo="meuTitulo"></gui-titulo>
+      <gui-titulo titulo="Formulários"></gui-titulo>
 
-      <input type="text" v-model="meuTitulo">
+      <p>Texto: {{texto}}</p>
+      <p>
+        <input type="text" v-model="texto">
+      </p>
 
-      <gui-tabela v-bind:titulos="['Título','Descrição','Link']" v-bind:registros="registros"></gui-tabela>
+      <p>Textarea: {{textarea}}</p>
+      <p style="white-space: pre-line">{{textarea}}</p>
+      <p>
+        <textarea v-model="textarea" rows="8" cols="80"></textarea>
+      </p>
 
-      <p v-once>{{meuTitulo}}</p>
-      <p v-html="html"></p>
-      <p>{{ 25.983475235 | TrataValor }}</p>
+      <p>Checkbox:</p>
+      <input type="checkbox" id="aceitaTermos" v-model="termos" >
+      <label for="aceitaTermos">{{termos}}</label>
+
+      <p>Multiple Checkboxes: {{notificacoes}}</p>
+      <p>
+        <input type="checkbox" id="receberEmail" value="email" v-model="notificacoes" >
+        <label for="receberEmail">Receber e-mail</label>
+        <input type="checkbox" id="receberSMS" value="sms" v-model="notificacoes" >
+        <label for="receberSMS">Receber SMS</label>
+        <input type="checkbox" id="receberTel" value="tel" v-model="notificacoes" >
+        <label for="receberTel">Receber Ligação</label>
+      </p>
+
+
+
+
+
 
     </div>
 
@@ -30,37 +52,16 @@
         template:'<h2>{{ titulo }}</h2>'
       });
 
-      Vue.component('gui-tabela',{
-        props:['titulos','registros'],
-        template:'<table style="width:100%">'+
-          '<thead>'+
-            '<tr>'+
-              '<th v-for="titulo in titulos">{{titulo}}</th>'+
-            '</tr>'+
-          '</thead>'+
-          '<tbody>'+
-            '<tr v-for="registro in registros">'+
-              '<td v-for="item in registro">{{item}}</td>'+
-            '</tr>'+
-          '</tbody>'+
-        '</table>'
-      });
+
 
       var app = new Vue({
         el:"#app",
         data:{
-          meuTitulo:'Esse é o Título',
-          registros:[
-            {titulo:'Título 1',descricao:'descricao1',link:'link1'},
-            {titulo:'Título 2',descricao:'descricao2',link:'link2'},
-            {titulo:'Título 3',descricao:'descricao3',link:'link3'}
-          ],
-          html:'<a href="#">Esse é um link</a>'
-        },
-        filters:{
-          TrataValor: function(valor){
-            return ('R$'+(valor).toFixed(2)).replace('.',',');
-          }
+          texto:'',
+          textarea:'',
+          termos:false,
+          notificacoes:[]
+
         }
 
       });
